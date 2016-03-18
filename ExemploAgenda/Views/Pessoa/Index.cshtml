@@ -22,7 +22,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Enderecos)
-        </th>        
+        </th>
         <th></th>
     </tr>
     @foreach (var item in Model)
@@ -51,10 +51,10 @@
                 {
                     @endereco.Logradouro;<br />
                 }
-            </td>       
+            </td>
             <td>
-                <a href="/Endereco/Create/@item.IdPessoa">+ Endereço</a> 
-                <a  href="/Telefone/Create/@item.IdPessoa">+ Telefone</a> 
+                <a href="/Endereco/Create/@item.IdPessoa">+ Endereço</a>  |
+                <a href="/Telefone/Create/@item.IdPessoa">+ Telefone</a>  |
                 @Html.ActionLink("Editar", "Edit", new { id = item.IdPessoa }) |
                 @Html.ActionLink("Detalhes", "Details", new { id = item.IdPessoa }) |
                 @Html.ActionLink("Desativar", "Delete", new { id = item.IdPessoa })

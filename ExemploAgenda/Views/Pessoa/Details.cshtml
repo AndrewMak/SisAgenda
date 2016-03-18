@@ -9,6 +9,11 @@
 <div>
     <h4>Pessoa</h4>
     <hr />
+    <div id="row">
+        @Html.ActionLink("Novo Endereço", "Create/" + Model.IdPessoa, "Endereco", new { @Class = "btn btn-primary" })
+        @Html.ActionLink("Novo Telefone", "Create/" + Model.IdPessoa, "Telefone", new { @Class = "btn btn-primary" })
+    </div>
+   
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Nome)
@@ -45,13 +50,14 @@
             Telefones
         </h3>
         @foreach (var item in Model.Telefones)
-        {           
+        {
             <dt>
-               @item.Tipo
+                @item.Tipo
             </dt>
             <dd>@item.Numero</dd>
         }
-        @Html.ActionLink("Listar Telefones", "Index/" + Model.IdPessoa + "", "Telefone")
+       
+
         <h3>
             Endereços
         </h3>
@@ -62,9 +68,9 @@
             </dt>
             <dd>@item.Logradouro</dd>
         }
-        @Html.ActionLink("Listar Endereços", "Index/"+Model.IdPessoa+"","Endereco")
-    </dl>
+       
+</dl>
 </div>
 <p>
-@Html.ActionLink("Voltar", "Index", "Pessoa")
+    @Html.ActionLink("Voltar", "Index", "Pessoa")
 </p>

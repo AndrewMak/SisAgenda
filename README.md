@@ -7,3 +7,6 @@ Repository,
 Service,
 Domain,
 com IOC usando SimpleInjector.
+<h2>Antes de executar a solução.</h2>
+
+É necessário executar o comando Update-Database no Package Manager Console

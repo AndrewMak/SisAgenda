@@ -9,6 +9,11 @@ namespace ExemploAgenda.Domain.Models
 {
     public class Pessoa
     {
+        public Pessoa()
+        {
+
+        }
+    
         [Key]
         public int IdPessoa { get; set; }
 
@@ -20,9 +25,10 @@ namespace ExemploAgenda.Domain.Models
         public ICollection<Telefone> Telefones { get; set; }
         public ICollection<Endereco> Enderecos { get; set; }
 
-        public bool PessoaAtiva(Pessoa pessoa)
+        //pessoa tem que estar ativa e a idade maior que 30 anos
+        public static bool PessoaAtiva(Pessoa pessoa)
         {
-            return pessoa.Status;
+            return pessoa.Status && DateTime.Now.Year - pessoa.DataNascimento.Year >= 30;
         }
     }
 }

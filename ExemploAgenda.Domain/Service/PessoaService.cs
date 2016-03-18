@@ -47,7 +47,7 @@ namespace ExemploAgenda.Domain.Service
 
         public IEnumerable<Pessoa> ObterTodosAtivo(IEnumerable<Pessoa> pessoas)
         {
-            return pessoas.Where(c => c.PessoaAtiva(c));
+            return pessoas.Where(c => Pessoa.PessoaAtiva(c));
         }
     }
 }

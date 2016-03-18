@@ -14,6 +14,7 @@ namespace ExemploAgenda.Domain.Models
 
         public string Nome { get; set; }
         public string SobreNome { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataNascimento { get; set; }
         public bool Status { get; set; }
         public ICollection<Telefone> Telefones { get; set; }

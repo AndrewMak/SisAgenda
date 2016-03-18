@@ -18,5 +18,10 @@ namespace ExemploAgenda.Domain.Models
         public bool Status { get; set; }
         public ICollection<Telefone> Telefones { get; set; }
         public ICollection<Endereco> Enderecos { get; set; }
+
+        public bool PessoaAtiva(Pessoa pessoa)
+        {
+            return pessoa.Status;
+        }
     }
 }

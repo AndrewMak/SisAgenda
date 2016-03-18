@@ -4,7 +4,7 @@
     ViewBag.Title = "Lista de Telefone";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <table class="table">
     <tr>
@@ -26,7 +26,7 @@
             @Html.DisplayFor(modelItem => item.Numero)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdTelefone }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdTelefone }) 
             @*@Html.ActionLink("Details", "Details", new { id=item.IdTelefone }) |*@
             @*@Html.ActionLink("Delete", "Delete", new { id=item.IdTelefone })*@
         </td>
@@ -34,4 +34,4 @@
 }
 
 </table>
-@Html.ActionLink("Back to List", "Index", "Pessoa")
+@Html.ActionLink("Voltar", "Index", "Pessoa")

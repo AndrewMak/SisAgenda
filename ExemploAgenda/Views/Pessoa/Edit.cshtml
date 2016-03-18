@@ -1,10 +1,10 @@
 ﻿@model ExemploAgenda.Domain.Models.Pessoa
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Contato";
 }
 
-<h2>Edit</h2>
+<h2>@ViewBag.Title</h2>
 
 
 @using (Html.BeginForm())
@@ -60,7 +60,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+   @Html.ActionLink("Voltar", "Index", "Pessoa")
 </div>
 
 @section Scripts {

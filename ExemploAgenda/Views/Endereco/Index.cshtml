@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ExemploAgenda.Domain.Models.Endereco>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Endereços";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -47,7 +47,7 @@
             @Html.DisplayFor(modelItem => item.Estado)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEndereco }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdEndereco }) 
             @*@Html.ActionLink("Details", "Details", new { id=item.IdEndereco }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.IdEndereco })*@
         </td>
@@ -55,4 +55,4 @@
 }
 
 </table>
-@Html.ActionLink("Back to List", "Index", "Pessoa")
+@Html.ActionLink("Voltar", "Index", "Pessoa")

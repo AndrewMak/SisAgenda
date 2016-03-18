@@ -15,5 +15,7 @@ namespace ExemploAgenda.Domain.Interface.Service
         Pessoa ObterPorNome(string nome);
         IEnumerable<Pessoa> ObterTodos();
         void Desativar(int id);
+        IEnumerable<Pessoa> ObterTodosAtivo(IEnumerable<Pessoa> pessoas);
+
     }
 }

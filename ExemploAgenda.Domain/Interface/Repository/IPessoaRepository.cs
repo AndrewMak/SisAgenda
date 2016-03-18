@@ -15,5 +15,6 @@ namespace ExemploAgenda.Domain.Interface.Repository
         Pessoa ObterPorNome(string nome);
          IEnumerable<Pessoa> ObterTodos();
         void Desativar(int id);
+
     }
 }

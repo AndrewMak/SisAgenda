@@ -22,7 +22,7 @@ namespace ExemploAgenda.Controllers
         // GET: Pessoas
         public ActionResult Index()
         {
-            return View(_service.ObterTodos());
+            return View(_service.ObterTodosAtivo(_service.ObterTodos()));
         }
 
         // GET: Pessoas/Details/5

@@ -1,7 +1,7 @@
 ﻿@model ExemploAgenda.Domain.Models.Endereco
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Adicionar Endereço";
 }
 <script>
     $(function () {
@@ -9,7 +9,7 @@
         idPessoa.val('@ViewBag.Id');
     });
 </script>
-<h2>Create</h2>
+<h2>@ViewBag.Title</h2>
 
 
 @using (Html.BeginForm()) 
@@ -69,7 +69,7 @@
 }
 
 <div>
-   @Html.ActionLink("Back to List", "Index", "Pessoa")
+@Html.ActionLink("Voltar", "Index", "Pessoa")
 </div>
 
 @section Scripts {

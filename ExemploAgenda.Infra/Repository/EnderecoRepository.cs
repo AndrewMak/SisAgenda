@@ -37,6 +37,11 @@ namespace ExemploAgenda.Infra.Repository
             _context.SaveChanges();
         }
 
+        public IEnumerable<Endereco> ObterEnderecosPorPessoa(int pessoaid)
+        {
+            return _context.Enderecos.Include(x => x.IdPessoa).Where(p => p.IdPessoa.IdPessoa == pessoaid);
+        }
+
         public Endereco ObterPorId(int enderecoid)
         {
             var endereco = _context.Enderecos.FirstOrDefault(x => x.IdEndereco == enderecoid);
@@ -45,7 +50,8 @@ namespace ExemploAgenda.Infra.Repository
 
         public Pessoa ObterPorPessoa(int PessoaId)
         {
-            throw new NotImplementedException();
+            var pessoa = _context.Pessoas.FirstOrDefault(x => x.IdPessoa == PessoaId);
+            return pessoa;
         }
     }
 }

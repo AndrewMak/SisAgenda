@@ -51,7 +51,7 @@
             </dt>
             <dd>@item.Numero</dd>
         }
-
+        @Html.ActionLink("Listar Telefones", "Index/" + Model.IdPessoa + "", "Telefone")
         <h3>
             Endereços
         </h3>
@@ -62,7 +62,7 @@
             </dt>
             <dd>@item.Logradouro</dd>
         }
-
+        @Html.ActionLink("Listar Endereços", "Index/"+Model.IdPessoa+"","Endereco")
     </dl>
 </div>
 <p>

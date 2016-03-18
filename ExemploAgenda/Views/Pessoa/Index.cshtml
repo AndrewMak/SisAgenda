@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<ExemploAgenda.Domain.Models.Pessoa>
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Contato";
 }
-
-<h2>Index</h2>
-
+<h2>@ViewBag.Title</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="Pessoa/Create" id="Adicionar" class="btn btn-primary">Adicionar Contato</a>
 </p>
 <table class="table">
     <tr>
@@ -26,13 +23,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Enderecos)
         </th>
-
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
@@ -44,7 +39,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>           
+            </td>
             <td>
                 @foreach (var telefone in item.Telefones)
                 {
@@ -53,7 +48,7 @@
 
                 }
             </td>
-            
+
             <td>
                 @foreach (var endereco in item.Enderecos)
                 {
@@ -64,12 +59,12 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                <a href="/Telefone/Create/@item.IdPessoa">Adicionar Telefone</a>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdPessoa }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdPessoa }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdPessoa })
+                <a href="/Endereco/Create/@item.IdPessoa">+ Endereço</a> 
+                <a  href="/Telefone/Create/@item.IdPessoa">+ Telefone</a> 
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdPessoa }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.IdPessoa }) |
+                @Html.ActionLink("Desativar", "Delete", new { id = item.IdPessoa })
             </td>
         </tr>
     }
-
 </table>

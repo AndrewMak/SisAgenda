@@ -13,5 +13,7 @@ namespace ExemploAgenda.Domain.Interface.Service
         void Atualizar(Endereco endereco);
         Endereco ObterPorId(int enderecoid);
         Pessoa ObterPorPessoa(int PessoaId);
+        IEnumerable<Endereco> ObterEnderecosPorPessoa(int pessoaid);
+
     }
 }

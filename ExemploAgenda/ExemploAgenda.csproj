@@ -296,14 +296,14 @@
     <Content Include="Views\Pessoa\Edit.cshtml" />
     <Content Include="Views\Pessoa\Index.cshtml" />
     <Content Include="Views\Telefone\Create.cshtml" />
-    <Content Include="Views\Telefone\Delete.cshtml" />
-    <Content Include="Views\Telefone\Details.cshtml" />
     <Content Include="Views\Telefone\Edit.cshtml" />
     <Content Include="Views\Telefone\Index.cshtml" />
+    <Content Include="Views\Endereco\Index.cshtml" />
+    <Content Include="Views\Endereco\Create.cshtml" />
+    <Content Include="Views\Endereco\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Endereco\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

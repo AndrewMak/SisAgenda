@@ -21,45 +21,19 @@ namespace ExemploAgenda.Controllers
         }
         public ActionResult Index(int id)
         {
-            var telefones =  _service.ObterTelefonesPorPessoa(id);
+            var telefones = _service.ObterTelefonesPorPessoa(id);
             return View(telefones);
         }
-        //private ApplicationDbContext db = new ApplicationDbContext();
-
-        //// GET: Telefone
-        //public async Task<ActionResult> Index()
-        //{
-        //    return View(await db.Telefones.ToListAsync());
-        //}
-
-        //// GET: Telefone/Details/5
-        //public async Task<ActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Telefone telefone = await db.Telefones.FindAsync(id);
-        //    if (telefone == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(telefone);
-        //}
-
-        // GET: Telefone/Create
         public ActionResult Create(int Id)
         {
             ViewBag.Id = Id;
             return View();
         }
 
-        // POST: Telefone/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  ActionResult Create(FormCollection telefone)
+        public ActionResult Create(FormCollection telefone)
         {
             var novotelefone = new Telefone();
             int idpessoa = Convert.ToInt32(telefone["IdPessoa.IdPessoa"].ToString());
@@ -91,8 +65,6 @@ namespace ExemploAgenda.Controllers
         }
 
         // POST: Telefone/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Telefone telefone)
@@ -105,39 +77,5 @@ namespace ExemploAgenda.Controllers
             return View(telefone);
         }
 
-        //// GET: Telefone/Delete/5
-        //public async Task<ActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Telefone telefone = await db.Telefones.FindAsync(id);
-        //    if (telefone == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(telefone);
-        //}
-
-        //// POST: Telefone/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(int id)
-        //{
-        //    Telefone telefone = await db.Telefones.FindAsync(id);
-        //    db.Telefones.Remove(telefone);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
     }
 }

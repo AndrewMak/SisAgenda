@@ -26,6 +26,11 @@ namespace ExemploAgenda.Domain.Service
             _repository.Atualizar(endereco);
         }
 
+        public IEnumerable<Endereco> ObterEnderecosPorPessoa(int pessoaid)
+        {
+            return _repository.ObterEnderecosPorPessoa(pessoaid);
+        }
+
         public Endereco ObterPorId(int enderecoid)
         {
             return _repository.ObterPorId(enderecoid);
@@ -33,7 +38,7 @@ namespace ExemploAgenda.Domain.Service
 
         public Pessoa ObterPorPessoa(int PessoaId)
         {
-            throw new NotImplementedException();
+            return _repository.ObterPorPessoa(PessoaId);
         }
     }
 }

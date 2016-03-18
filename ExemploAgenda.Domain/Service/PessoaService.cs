@@ -23,7 +23,12 @@ namespace ExemploAgenda.Domain.Service
 
         public void Atualizar(Pessoa pessoa)
         {
-            throw new NotImplementedException();
+            _repository.Atualizar(pessoa);
+        }
+
+        public void Desativar(int id)
+        {
+            _repository.Desativar(id);
         }
 
         public Pessoa ObterPorId(int pessoaid)

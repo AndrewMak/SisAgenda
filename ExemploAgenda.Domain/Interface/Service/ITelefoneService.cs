@@ -12,6 +12,8 @@ namespace ExemploAgenda.Domain.Interface.Service
         void Adicionar(Telefone telefone);
         void Atualizar(Telefone telefone);
         Telefone ObterPorId(int telefoneid);
-        Telefone ObterPorPessoa(int pessoaId);
+        Pessoa ObterPorPessoa(int pessoaId);
+        IEnumerable<Telefone> ObterTelefonesPorPessoa(int pessoaid);
+
     }
 }

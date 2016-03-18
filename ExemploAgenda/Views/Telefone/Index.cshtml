@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExemploAgenda.Models.Telefone>
+﻿@model IEnumerable<ExemploAgenda.Domain.Models.Telefone>
 
 @{
     ViewBag.Title = "Index";
@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -30,8 +27,8 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdTelefone }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdTelefone }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdTelefone })
+            @*@Html.ActionLink("Details", "Details", new { id=item.IdTelefone }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.IdTelefone })*@
         </td>
     </tr>
 }

@@ -24,19 +24,32 @@ namespace ExemploAgenda.Infra.Repository
                 _context.SaveChanges();
             }
             catch (Exception ex)
-            {                
+            {
                 throw ex;
-            }      
+            }
         }
 
         public void Atualizar(Pessoa pessoa)
         {
-            throw new NotImplementedException();
+            _context.Entry(pessoa).State = EntityState.Modified;
+           _context.SaveChanges();
+        }
+
+        public void Desativar(int id)
+        {
+            var pessoa = ObterPorId(id);
+            pessoa.Status = false;
+            Atualizar(pessoa);
         }
 
         public Pessoa ObterPorId(int pessoaid)
         {
-            return _context.Pessoas.FirstOrDefault(x => x.IdPessoa == pessoaid);
+            var pessoa = _context.Pessoas.Include(x => x.Telefones).Include(p => p.Enderecos).FirstOrDefault(x => x.IdPessoa == pessoaid);
+            if (pessoa.Telefones == null)
+                pessoa.Telefones = new List<Telefone>();
+            if (pessoa.Enderecos == null)
+                pessoa.Enderecos = new List<Endereco>();
+            return pessoa;
         }
 
         public Pessoa ObterPorNome(string nome)
@@ -45,7 +58,7 @@ namespace ExemploAgenda.Infra.Repository
         }
         public IEnumerable<Pessoa> ObterTodos()
         {
-            return  _context.Pessoas.Include(x => x.Telefones).Include(p => p.Enderecos);
+            return _context.Pessoas.Include(x => x.Telefones).Include(p => p.Enderecos);
         }
     }
 }

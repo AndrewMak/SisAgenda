@@ -5,24 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExemploAgenda.Domain.Models;
+using ExemploAgenda.Domain.Interface.Repository;
 
 namespace ExemploAgenda.Domain.Service
 {
     public class EnderecoService : IEnderecoService
     {
+        private readonly IEnderecoRepository _repository;
+        public EnderecoService(IEnderecoRepository repository)
+        {
+            _repository = repository;
+        }
         public void Adicionar(Endereco endereco)
         {
-            throw new NotImplementedException();
+            _repository.Adicionar(endereco);
         }
 
         public void Atualizar(Endereco endereco)
         {
-            throw new NotImplementedException();
+            _repository.Atualizar(endereco);
         }
 
-        public Pessoa ObterPorId(int enderecoid)
+        public Endereco ObterPorId(int enderecoid)
         {
-            throw new NotImplementedException();
+            return _repository.ObterPorId(enderecoid);
         }
 
         public Pessoa ObterPorPessoa(int PessoaId)

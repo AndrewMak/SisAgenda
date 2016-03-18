@@ -5,29 +5,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExemploAgenda.Domain.Models;
+using ExemploAgenda.Domain.Interface.Repository;
 
 namespace ExemploAgenda.Domain.Service
 {
     public class TelefoneService : ITelefoneService
     {
+        private readonly ITelefoneRepository _repository;
+        public TelefoneService(ITelefoneRepository repository)
+        {
+            _repository = repository;
+        }
         public void Adicionar(Telefone telefone)
         {
-            throw new NotImplementedException();
+            _repository.Adicionar(telefone);
         }
 
         public void Atualizar(Telefone telefone)
         {
-            throw new NotImplementedException();
+            _repository.Atualizar(telefone);
         }
 
         public Telefone ObterPorId(int telefoneid)
         {
-            throw new NotImplementedException();
+            return _repository.ObterPorId(telefoneid);
         }
 
-        public Telefone ObterPorPessoa(int pessoaId)
+        public Pessoa ObterPorPessoa(int pessoaId)
         {
-            throw new NotImplementedException();
+            return _repository.ObterPorPessoa(pessoaId);
+        }
+
+        public IEnumerable<Telefone> ObterTelefonesPorPessoa(int pessoaid)
+        {
+            return _repository.ObterTelefonesPorPessoa(pessoaid);
         }
     }
 }

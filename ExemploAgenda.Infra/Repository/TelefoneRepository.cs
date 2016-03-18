@@ -5,29 +5,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExemploAgenda.Domain.Models;
+using System.Data.Entity;
 
 namespace ExemploAgenda.Infra.Repository
 {
     public class TelefoneRepository : ITelefoneRepository
     {
+        private readonly Contexto _context;
+        public TelefoneRepository(Contexto context)
+        {
+            _context = new Contexto();
+        }
         public void Adicionar(Telefone telefone)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Telefones.Add(telefone);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Atualizar(Telefone telefone)
         {
-            throw new NotImplementedException();
+            _context.Entry(telefone).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
         public Telefone ObterPorId(int telefoneid)
         {
-            throw new NotImplementedException();
+            var telefone = _context.Telefones.FirstOrDefault(x => x.IdTelefone == telefoneid);
+            return telefone;
         }
 
-        public Telefone ObterPorPessoa(int pessoaId)
+        public Pessoa ObterPorPessoa(int pessoaId)
         {
-            throw new NotImplementedException();
+            var pessoa = _context.Pessoas.FirstOrDefault(x=> x.IdPessoa == pessoaId);
+            return pessoa;
+        }
+
+        public IEnumerable<Telefone> ObterTelefonesPorPessoa(int pessoaid)
+        {
+            return _context.Telefones.Include(x => x.IdPessoa).Where(p => p.IdPessoa.IdPessoa == pessoaid);
         }
     }
 }

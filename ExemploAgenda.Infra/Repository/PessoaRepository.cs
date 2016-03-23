@@ -6,15 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 using ExemploAgenda.Domain.Models;
 using System.Data.Entity;
+using System.Data;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace ExemploAgenda.Infra.Repository
 {
     public class PessoaRepository : IPessoaRepository
     {
         private readonly Contexto _context;
+        private readonly string _connectionString;
         public PessoaRepository(Contexto context)
         {
             _context = new Contexto();
+            _connectionString = _context.Database.Connection.ConnectionString.ToString();
+
         }
         public void Adicionar(Pessoa pessoa)
         {
@@ -25,14 +31,14 @@ namespace ExemploAgenda.Infra.Repository
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Erro ao Cadastrar Pessoa", ex);
             }
         }
 
         public void Atualizar(Pessoa pessoa)
         {
             _context.Entry(pessoa).State = EntityState.Modified;
-           _context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void Desativar(int id)
@@ -58,7 +64,45 @@ namespace ExemploAgenda.Infra.Repository
         }
         public IEnumerable<Pessoa> ObterTodos()
         {
-            return _context.Pessoas.Include(x => x.Telefones).Include(p => p.Enderecos);
+            const string sql = @"SELECT tc.[IdPessoa] as IdPessoa
+          ,tc.[Nome] as Nome      
+		  ,tc.[SobreNome] as SobreNome
+		  ,tc.[DataNascimento] as DataNascimento
+		  ,tc.[Status] as Status    
+		  ,tp.[Tipo] As Telefones_Tipo
+          ,tp.[Numero] AS Telefones_Numero			  
+          FROM Pessoa tc
+          INNER JOIN Telefone tp ON tc.IdPessoa = tp.IdPessoa_IdPessoa";
+
+           const string sql2 = @"SELECT tc.[IdPessoa] as IdPessoa
+          ,tc.[Nome] as Nome      
+		  ,tc.[SobreNome] as SobreNome
+		  ,tc.[DataNascimento] as DataNascimento
+		  ,tc.[Status] as Status    	
+		  ,en.IdEndereco AS Enderecos_IdEndereco	  
+		  ,en.Logradouro AS Enderecos_Logradouro
+		  ,en.Numero AS Enderecos_Numero
+          FROM Pessoa tc
+          left JOIN Endereco en ON tc.IdPessoa = en.IdPessoa_IdPessoa";
+
+            var users = new List<Pessoa>();
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                dynamic ContatoTelefone = db.Query<dynamic>(sql);
+                dynamic ContatoEndereco = db.Query<dynamic>(sql2);
+
+
+                var ListContato = (Slapper.AutoMapper.MapDynamic<Pessoa>(ContatoTelefone) as IEnumerable<Pessoa>).ToList();
+                var ListEndereco = (Slapper.AutoMapper.MapDynamic<Pessoa>(ContatoEndereco) as IEnumerable<Pessoa>).ToList();
+
+                //incluimos o endereços dos contatos, não consegui de outra forma, fazer direto esse procedimento.
+                foreach (var item in ListContato)
+                {
+                    item.Enderecos = ListEndereco.Find(x => x.IdPessoa == item.IdPessoa).Enderecos.ToList();
+                }
+                return ListContato;
+            }
+
         }
     }
 }
